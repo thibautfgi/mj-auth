@@ -1,4 +1,4 @@
-package com.mountainjourney.mjauth.security;
+package com.mountain_journey.mj_auth.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.*;

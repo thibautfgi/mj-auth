@@ -1,4 +1,4 @@
-package com.mountainjourney.mjauth.dto;
+package com.mountain_journey.mj_auth.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -17,3 +17,4 @@ public class RegisterRequest {
     @NotBlank
     private String password;
 }
+

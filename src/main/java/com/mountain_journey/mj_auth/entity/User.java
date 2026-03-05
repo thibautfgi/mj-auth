@@ -1,4 +1,4 @@
-package com.mountainjourney.mjauth.entity;
+package com.mountain_journey.mj_auth.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,6 +1,6 @@
-package com.mountainjourney.mjauth.security;
+package com.mountain_journey.mj_auth.security;
 
-import com.mountainjourney.mjauth.service.JwtService;
+import com.mountain_journey.mj_auth.service.JwtService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import lombok.RequiredArgsConstructor;

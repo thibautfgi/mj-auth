@@ -1,6 +1,6 @@
-package com.mountainjourney.mjauth.repository;
+package com.mountain_journey.mj_auth.repository;
 
-import com.mountainjourney.mjauth.entity.User;
+import com.mountain_journey.mj_auth.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 

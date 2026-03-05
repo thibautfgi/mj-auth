@@ -1,4 +1,4 @@
-package com.mountainjourney.mjauth.service;
+package com.mountain_journey.mj_auth.service;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;

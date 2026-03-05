@@ -1,7 +1,7 @@
-package com.mountainjourney.mjauth.controller;
+package com.mountain_journey.mj_auth.controller;
 
-import com.mountainjourney.mjauth.dto.*;
-import com.mountainjourney.mjauth.service.AuthService;
+import com.mountain_journey.mj_auth.dto.*;
+import com.mountain_journey.mj_auth.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
