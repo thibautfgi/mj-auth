@@ -9,7 +9,7 @@ FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 COPY start-auth.sh /app/start-auth.sh
-RUN chmod +x /app/start-auth.sh
+RUN sed -i 's/\r//' /app/start-auth.sh && chmod +x /app/start-auth.sh
 
 EXPOSE 8081
 ENTRYPOINT ["/app/start-auth.sh"]
