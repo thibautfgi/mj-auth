@@ -16,32 +16,32 @@ public class AuthService {
     private final JwtService jwtService;
 
     public AuthResponse register(RegisterRequest request) {
-        if (userRepository.existsByEmail(request.getEmail())) {
+        if (userRepository.existsByEmail(request.getUserEmail())) {
             throw new RuntimeException("Email déjà utilisé");
         }
 
         User user = User.builder()
-                .firstName(request.getFirstName())
-                .lastName(request.getLastName())
-                .phone(request.getPhone())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
+                .userFirstName(request.getUserFirstName())
+                .userLastName(request.getUserLastName())
+                .userPhone(request.getUserPhone())
+                .userEmail(request.getUserEmail())
+                .userPassword(passwordEncoder.encode(request.getUserPassword()))
                 .build();
 
         userRepository.save(user);
-        String token = jwtService.generateToken(user.getEmail());
-        return new AuthResponse(token, user.getEmail(), user.getFirstName(), user.getLastName());
+        String token = jwtService.generateToken(user.getUserEmail());
+        return new AuthResponse(token, user.getUserEmail(), user.getUserFirstName(), user.getUserLastName());
     }
 
     public AuthResponse login(LoginRequest request) {
-        User user = userRepository.findByEmail(request.getEmail())
+        User user = userRepository.findByEmail(request.getUserEmail())
                 .orElseThrow(() -> new RuntimeException("Utilisateur introuvable"));
 
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(request.getUserPassword(), user.getUserPassword())) {
             throw new RuntimeException("Mot de passe incorrect");
         }
 
-        String token = jwtService.generateToken(user.getEmail());
-        return new AuthResponse(token, user.getEmail(), user.getFirstName(), user.getLastName());
+        String token = jwtService.generateToken(user.getUserEmail());
+        return new AuthResponse(token, user.getUserEmail(), user.getUserFirstName(), user.getUserLastName());
     }
 }
