@@ -11,6 +11,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.http.HttpMethod;
 
 import java.util.List;
 
@@ -26,17 +27,19 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
         http
-                // 🔥 CORS en tout premier
+                // CORS doit être tout en premier
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
 
+                // Autorise explicitement les OPTIONS
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()   // ← Ajout important
                         .requestMatchers("/api/auth/**", "/api/users/**").permitAll()
                         .anyRequest().authenticated()
                 )
 
-                // On met le filtre JWT APRÈS le CORS
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
