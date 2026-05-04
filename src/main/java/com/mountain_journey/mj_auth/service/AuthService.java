@@ -16,7 +16,7 @@ public class AuthService {
     private final JwtService jwtService;
 
     public AuthResponse register(RegisterRequest request) {
-        if (userRepository.existsByEmail(request.getUserEmail())) {
+        if (userRepository.existsByUserEmail(request.getUserEmail())) {
             throw new RuntimeException("Email déjà utilisé");
         }
 
@@ -34,7 +34,7 @@ public class AuthService {
     }
 
     public AuthResponse login(LoginRequest request) {
-        User user = userRepository.findByEmail(request.getUserEmail())
+        User user = userRepository.findByUserEmail(request.getUserEmail())
                 .orElseThrow(() -> new RuntimeException("Utilisateur introuvable"));
 
         if (!passwordEncoder.matches(request.getUserPassword(), user.getUserPassword())) {
