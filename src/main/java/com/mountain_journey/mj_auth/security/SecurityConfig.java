@@ -31,7 +31,7 @@ public class SecurityConfig {
         http
                 // CORS doit être tout en premier
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                .csrf(csrf -> csrf.disable())
+                .csrf(org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer::disable)
 
                 // Autorise explicitement les OPTIONS
                 .authorizeHttpRequests(auth -> auth
