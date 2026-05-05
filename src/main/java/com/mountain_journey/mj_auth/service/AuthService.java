@@ -44,4 +44,13 @@ public class AuthService {
         String token = jwtService.generateToken(user.getUserEmail());
         return new AuthResponse(token, user.getUserEmail(), user.getUserFirstName(), user.getUserLastName());
     }
+
+    public AuthResponse whoiam(LoginRequest request) {
+        User user = userRepository.findByUserEmail(request.getUserEmail())
+                .orElseThrow(() -> new RuntimeException("Utilisateur introuvable"));
+
+
+        String token = jwtService.generateToken(user.getUserEmail());
+        return new AuthResponse(token, user.getUserEmail(), user.getUserFirstName(), user.getUserLastName());
+    }
 }
