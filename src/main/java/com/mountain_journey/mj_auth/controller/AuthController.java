@@ -27,7 +27,7 @@ public class AuthController {
 
     @GetMapping("/whoiam")
     public ResponseEntity<String> protectedRoute() {
-        return ResponseEntity.ok(authService.login(request);
+        return ResponseEntity.ok(authService.login(request));
     }
 
 }
