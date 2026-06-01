@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class AuthResponse {
+public class WhoiamResponse {
     private String userEmail;
     private String userFirstName;
     private String userLastName;

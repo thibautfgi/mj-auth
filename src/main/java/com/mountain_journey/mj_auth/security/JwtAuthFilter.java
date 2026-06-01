@@ -28,7 +28,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         System.out.println("JWT FILTER: " + request.getMethod() + " " + path);
         // Laisse passer les requêtes preflight CORS et les routes publiques (auth, users)
         if ("OPTIONS".equalsIgnoreCase(request.getMethod()) ||
-            path.startsWith("/api/auth") || path.startsWith("/api/users")) {
+            path.equals("/api/auth/login") || path.equals("/api/auth/register") ||
+            path.startsWith("/api/users")) {
             System.out.println("JWT FILTER: PASSE SANS AUTH " + path);
             filterChain.doFilter(request, response);
             return;

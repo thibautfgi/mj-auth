@@ -35,8 +35,8 @@ public class SecurityConfig {
 
                 // Autorise explicitement les OPTIONS
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()   // ← Ajout important
-                        .requestMatchers("/api/auth/**", "/api/users/**").permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        .requestMatchers("/api/auth/login", "/api/auth/register", "/api/users/**").permitAll()
                         .anyRequest().authenticated()
                 )
 

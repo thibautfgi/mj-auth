@@ -5,6 +5,7 @@ import com.mountain_journey.mj_auth.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,8 +27,9 @@ public class AuthController {
     }
 
     @GetMapping("/whoiam")
-    public ResponseEntity<String> protectedRoute() {
-        return ResponseEntity.ok(authService.login(request));
+    public ResponseEntity<WhoiamResponse> whoiam() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        return ResponseEntity.ok(authService.whoiam(email));
     }
 
 }
