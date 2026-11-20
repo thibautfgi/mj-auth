@@ -32,7 +32,7 @@ public class AuthService {
                 .build();
 
         userRepository.save(user);
-        String token = jwtService.generateToken(user.getUserEmail());
+        String token = jwtService.generateToken(user.getUserId(), user.getUserEmail());
         return new AuthResponse(token, user.getUserEmail(), user.getUserFirstName(), user.getUserLastName());
     }
 
@@ -46,7 +46,7 @@ public class AuthService {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Identifiants incorrects");
         }
 
-        String token = jwtService.generateToken(user.getUserEmail());
+        String token = jwtService.generateToken(user.getUserId(), user.getUserEmail());
         return new AuthResponse(token, user.getUserEmail(), user.getUserFirstName(), user.getUserLastName());
     }
 

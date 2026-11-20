@@ -24,10 +24,11 @@ public class JwtService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public String generateToken(String email) {
+    public String generateToken(Integer userId, String email) {
         return Jwts.builder()
                 .subject(email)
                 .claim("email", email)           // ✅ claim explicite utile pour le moteur
+                .claim("userId", userId)         // identifiant utilisateur (mj_auth_db) utilisé par mj-moteur
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(getKey())
